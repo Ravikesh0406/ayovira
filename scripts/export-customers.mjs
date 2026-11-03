@@ -1,26 +1,51 @@
 import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import { DatabaseSync } from "node:sqlite";
+import { pathToFileURL } from "node:url";
+import { createClient } from "@libsql/client";
 
-const dbPath = process.env.DATABASE_PATH
+// Load local development settings when present. In production the values
+// should already be provided by the environment.
+for (const file of [".env.local", ".env"]) {
+  try {
+    process.loadEnvFile(file);
+  } catch {
+    // Ignore missing files.
+  }
+}
+
+const remoteUrl = process.env.TURSO_DATABASE_URL;
+const localPath = process.env.DATABASE_PATH
   ? path.resolve(process.env.DATABASE_PATH)
   : path.join(process.cwd(), "data", "ayovira.db");
 
-if (!existsSync(dbPath)) {
-  console.error(`No database found at ${dbPath}. Run the app and create an account first.`);
+if (!remoteUrl && !existsSync(localPath)) {
+  console.error(
+    `No database found. Set TURSO_DATABASE_URL, or run the app locally to create ${localPath}.`,
+  );
   process.exit(1);
 }
 
-const db = new DatabaseSync(dbPath);
-const rows = db
-  .prepare(
+const client = remoteUrl
+  ? createClient({ url: remoteUrl, authToken: process.env.TURSO_AUTH_TOKEN })
+  : createClient({ url: pathToFileURL(localPath).href });
+
+let rows;
+try {
+  const result = await client.execute(
     `SELECT full_name, mobile, email, area, role, interests, consent_updates,
             consent_contact, consent_text_version, source_page, utm_source,
             utm_medium, utm_campaign, created_at, updated_at
      FROM customers
      ORDER BY created_at DESC`,
-  )
-  .all();
+  );
+  rows = result.rows;
+} catch (error) {
+  console.error(
+    "Could not read customers:",
+    error instanceof Error ? error.message : error,
+  );
+  process.exit(1);
+}
 
 const headers = [
   "full_name",

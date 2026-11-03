@@ -39,7 +39,7 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ ok: false, errors }, { status: 422 });
   }
 
-  const row = findCustomerByMobile(customer.mobile);
+  const row = await findCustomerByMobile(customer.mobile);
   if (!row || !verifyPassword(currentPassword, row.password_hash)) {
     return NextResponse.json(
       { ok: false, errors: { currentPassword: "That password is not correct." } },
@@ -47,6 +47,6 @@ export async function PATCH(request: Request) {
     );
   }
 
-  updatePasswordHash(customer.id, hashPassword(newPassword as string));
+  await updatePasswordHash(customer.id, hashPassword(newPassword as string));
   return NextResponse.json({ ok: true });
 }

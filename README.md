@@ -4,9 +4,9 @@ A single-page wellness marketing site plus a working customer account area:
 sign up, log in, manage your profile and consent choices, download your data,
 change your password, or delete your account.
 
-Built with Next.js 16 (App Router), React 19, TypeScript and a local SQLite
-database through Node's built-in `node:sqlite`. No external services are needed
-to run it.
+Built with Next.js 16 (App Router), React 19, TypeScript and libSQL through
+`@libsql/client`. Production data lives in a hosted Turso database; local
+development falls back to a SQLite file when Turso is not configured.
 
 ## Run it
 
@@ -24,8 +24,7 @@ npm run build
 npm run start
 ```
 
-Requires Node.js 22.5 or newer (Node 24 recommended) because the data layer uses
-`node:sqlite`.
+Requires Node.js 20.9 or newer (Node 24 recommended).
 
 ## What is built
 
@@ -46,8 +45,9 @@ Requires Node.js 22.5 or newer (Node 24 recommended) because the data layer uses
 - **Privacy notice** — `/privacy`.
 - **Security basics** — scrypt password hashing, HTTP-only session cookies,
   server-side validation, a hidden honeypot field, and in-memory rate limiting.
-- **Data for the founder** — every account is stored in `data/ayovira.db`. Use
-  `npm run export:customers` to write a CSV into `exports/`.
+- **Data for the founder** — every account is stored in the configured Turso
+  database (or `data/ayovira.db` locally). Use `npm run export:customers` to
+  write a CSV into `exports/`.
 
 ## Project layout
 
@@ -62,7 +62,7 @@ app/
   robots.ts sitemap.ts manifest.ts opengraph-image.tsx icon.svg
 components/                 page sections and forms
 lib/
-  db.ts                     SQLite schema and queries
+  db.ts                     libSQL schema and queries
   auth.ts                   password hashing and sessions
   validation.ts             shared server-side validation
   types.ts                  roles, interests, types
@@ -78,12 +78,14 @@ Copy `.env.example` to `.env.local` if you want to override defaults.
 
 | Variable | Default | Purpose |
 |---|---|---|
-| `DATABASE_PATH` | `./data/ayovira.db` | SQLite file location |
+| `TURSO_DATABASE_URL` | _(unset)_ | Hosted Turso database URL |
+| `TURSO_AUTH_TOKEN` | _(unset)_ | Turso database token |
+| `DATABASE_PATH` | `./data/ayovira.db` | Local fallback file when Turso is not set |
 | `NEXT_PUBLIC_SITE_URL` | `https://www.ayovira.com` | Canonical URL, sitemap, schema |
 
-In production, set `DATABASE_PATH` to a persistent disk location. On serverless
-platforms the local filesystem is ephemeral; move the data layer to a managed
-Postgres/Supabase or a hosted SQLite service before launch.
+When `TURSO_DATABASE_URL` is set, all reads and writes go to Turso and the local
+file is ignored. Tables are created automatically on the first database request.
+Without Turso, the app uses the local SQLite file so you can develop offline.
 
 ## Data model
 
@@ -101,8 +103,8 @@ Export CSVs never include password hashes or session tokens.
 These come from the build brief and should be checked before launch:
 
 1. **Domain** — currently `https://www.ayovira.com`.
-2. **Social accounts** — hidden in the footer until real URLs are added in
-   `components/Footer.tsx`.
+2. **Social accounts** — WhatsApp is linked; add the rest in
+   `components/Footer.tsx` once the URLs are confirmed.
 3. **Logo** — the header/footer use a recreated SVG wordmark. Replace it with the
    official transparent logo when available.
 4. **Healthcare partner** — the camps section intentionally omits the "health

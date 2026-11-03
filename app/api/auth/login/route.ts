@@ -51,8 +51,8 @@ export async function POST(request: Request) {
   }
 
   const row = identifier.includes("@")
-    ? findCustomerByEmail(identifier)
-    : findCustomerByMobile(normalizeMobile(identifier));
+    ? await findCustomerByEmail(identifier)
+    : await findCustomerByMobile(normalizeMobile(identifier));
 
   if (!row || !verifyPassword(password, row.password_hash)) {
     return NextResponse.json(

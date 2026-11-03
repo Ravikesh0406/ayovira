@@ -55,7 +55,7 @@ export async function PATCH(request: Request) {
   const input = result.data;
 
   if (input.email) {
-    const existing = findCustomerByEmail(input.email);
+    const existing = await findCustomerByEmail(input.email);
     if (existing && existing.id !== customer.id) {
       return NextResponse.json(
         {
@@ -70,7 +70,7 @@ export async function PATCH(request: Request) {
   }
 
   try {
-    const updated = updateCustomer(customer.id, input);
+    const updated = await updateCustomer(customer.id, input);
     return NextResponse.json({ ok: true, customer: updated });
   } catch (error) {
     console.error("Profile update failed", error);
@@ -96,6 +96,6 @@ export async function DELETE() {
   }
 
   await endSession();
-  deleteCustomer(customer.id);
+  await deleteCustomer(customer.id);
   return NextResponse.json({ ok: true });
 }

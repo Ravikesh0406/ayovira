@@ -41,7 +41,7 @@ export async function POST(request: Request) {
 
   const input = result.data;
 
-  if (findCustomerByMobile(input.mobile)) {
+  if (await findCustomerByMobile(input.mobile)) {
     return NextResponse.json(
       {
         ok: false,
@@ -54,7 +54,7 @@ export async function POST(request: Request) {
     );
   }
 
-  if (input.email && findCustomerByEmail(input.email)) {
+  if (input.email && (await findCustomerByEmail(input.email))) {
     return NextResponse.json(
       {
         ok: false,
@@ -67,7 +67,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const customer = createCustomer({
+    const customer = await createCustomer({
       fullName: input.fullName,
       mobile: input.mobile,
       email: input.email,
@@ -84,7 +84,7 @@ export async function POST(request: Request) {
       utmCampaign: input.utmCampaign,
     });
 
-    purgeExpiredSessions();
+    await purgeExpiredSessions();
     await startSession(customer.id);
 
     return NextResponse.json(
