@@ -1,0 +1,22 @@
+# Local data (SQLite database)
+/data
+/exports
+.env
+.env.local
+.env.*.local
+
+# Next.js
+/.next
+/out
+/build
+next-env.d.ts
+
+# Dependencies
+/node_modules
+
+# Logs and OS files
+*.log
+.DS_Store
+Thumbs.db
+
+tsconfig.tsbuildinfo
