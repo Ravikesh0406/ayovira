@@ -89,9 +89,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html
       lang="en-IN"
       data-scroll-behavior="smooth"
+      suppressHydrationWarning
       className={`${fraunces.variable} ${montserrat.variable}`}
     >
-      <body>
+      <body suppressHydrationWarning>
         <a className="skip-link" href="#main">
           Skip to content
         </a>

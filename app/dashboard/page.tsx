@@ -14,6 +14,7 @@ import {
 import { getCurrentCustomer } from "@/lib/auth";
 import { formatDate, firstName } from "@/lib/format";
 import { interestLabel, roleLabel } from "@/lib/types";
+import { Reveal } from "@/components/Motion";
 
 export const metadata: Metadata = {
   title: "Your dashboard",
@@ -40,7 +41,7 @@ export default async function DashboardPage() {
       </div>
 
       <div className="dash-grid">
-        <div className="dash-stack">
+        <Reveal className="dash-stack">
           <section className="card" aria-labelledby="profile-heading">
             <div className="card-head">
               <div>
@@ -129,9 +130,9 @@ export default async function DashboardPage() {
               ) : null}
             </div>
           </section>
-        </div>
+        </Reveal>
 
-        <div className="dash-stack">
+        <Reveal className="dash-stack" delay={0.08}>
           <section className="card" aria-labelledby="next-heading">
             <div className="card-head">
               <h2 id="next-heading">What&apos;s next</h2>
@@ -195,7 +196,7 @@ export default async function DashboardPage() {
               Based in Faridabad, Haryana.
             </p>
           </section>
-        </div>
+        </Reveal>
       </div>
     </>
   );

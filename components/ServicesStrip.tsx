@@ -7,6 +7,8 @@ import {
   Sparkles,
 } from "lucide-react";
 
+import { Stagger, StaggerItem } from "./Motion";
+
 const SERVICES = [
   { icon: Flower2, label: "Yoga" },
   { icon: Dumbbell, label: "Fitness and Zumba" },
@@ -28,9 +30,9 @@ export function ServicesStrip() {
           </p>
         </div>
 
-        <div className="services-grid">
+        <Stagger className="services-grid">
           {SERVICES.map(({ icon: Icon, label, tag }) => (
-            <div className="service-item" key={label}>
+            <StaggerItem className="service-item" key={label}>
               <span className="service-icon">
                 <Icon size={26} strokeWidth={1.8} aria-hidden="true" />
               </span>
@@ -38,9 +40,9 @@ export function ServicesStrip() {
                 {label}
                 {tag ? <span className="service-tag">{tag}</span> : null}
               </span>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

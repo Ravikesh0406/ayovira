@@ -506,6 +506,7 @@ p:last-child {
 }
 
 .hero-copy {
+  min-width: 0;
   animation: rise-in 0.7s ease both;
 }
 
@@ -556,12 +557,6 @@ p:last-child {
   animation: rise-in 0.9s 0.1s ease both;
 }
 
-.hero-art svg {
-  width: 100%;
-  max-width: 520px;
-  height: auto;
-}
-
 @keyframes rise-in {
   from {
     opacity: 0;
@@ -571,6 +566,12 @@ p:last-child {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.hero-art svg {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
 }
 
 /* ---------- Services strip ---------- */

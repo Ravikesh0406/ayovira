@@ -1,3 +1,5 @@
+import { Stagger, StaggerItem } from "./Motion";
+
 function PhoneMock() {
   return (
     <div className="mock-form" aria-hidden="true">
@@ -91,18 +93,18 @@ export function HowItWorks() {
           <p>Three simple steps, starting with hello.</p>
         </div>
 
-        <div className="steps">
+        <Stagger className="steps">
           {STEPS.map((step, index) => (
-            <div className="step" key={step.title}>
+            <StaggerItem className="step" key={step.title}>
               <span className="step-number" aria-hidden="true">
                 {index + 1}
               </span>
               <div className="step-visual">{step.visual}</div>
               <h3>{step.title}</h3>
               <p>{step.copy}</p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );
