@@ -20,3 +20,5 @@ next-env.d.ts
 Thumbs.db
 
 tsconfig.tsbuildinfo
+.vercel
+.env*
