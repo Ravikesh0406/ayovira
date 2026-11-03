@@ -15,6 +15,8 @@ import { getCurrentCustomer } from "@/lib/auth";
 import { formatDate, firstName } from "@/lib/format";
 import { interestLabel, roleLabel } from "@/lib/types";
 import { Reveal } from "@/components/Motion";
+import { WhatsAppIcon } from "@/components/SocialIcons";
+import { WHATSAPP_COMMUNITY_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Your dashboard",
@@ -128,6 +130,18 @@ export default async function DashboardPage() {
                   Camps and services
                 </span>
               ) : null}
+            </div>
+
+            <div className="dash-actions">
+              <a
+                className="btn btn-secondary btn-sm"
+                href={WHATSAPP_COMMUNITY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <WhatsAppIcon size={16} />
+                Join the WhatsApp community
+              </a>
             </div>
           </section>
         </Reveal>

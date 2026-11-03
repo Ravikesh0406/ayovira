@@ -1,11 +1,18 @@
 import Link from "next/link";
 
+import { WHATSAPP_COMMUNITY_URL } from "@/lib/constants";
 import { Logo } from "./Logo";
-import { FacebookIcon, InstagramIcon, LinkedInIcon } from "./SocialIcons";
+import { InstagramIcon, WhatsAppIcon } from "./SocialIcons";
 
 // Only add URLs here once the founder confirms the accounts are live.
 // The brief asks us to hide unconfirmed social links rather than link placeholders.
-const SOCIALS: { label: string; url: string; icon: typeof InstagramIcon }[] = [];
+const SOCIALS: { label: string; url: string; icon: typeof InstagramIcon }[] = [
+  {
+    label: "Join the Ayovira WhatsApp community",
+    url: WHATSAPP_COMMUNITY_URL,
+    icon: WhatsAppIcon,
+  },
+];
 
 const FOOTER_LINKS = [
   { href: "/#how-it-works", label: "How it works" },

@@ -59,3 +59,22 @@ export function LinkedInIcon({ size = 20 }: IconProps) {
     </svg>
   );
 }
+
+export function WhatsAppIcon({ size = 20 }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M20.4 11.6a8.4 8.4 0 0 1-12.5 7.4L3.5 20.5l1.5-4.3A8.4 8.4 0 1 1 20.4 11.6Z" />
+      <path d="M8.4 8.1c.3-.6.9-.6 1.2-.1l.7 1.3c.2.4.1.7-.2 1l-.5.4c.6 1.2 1.5 2 2.7 2.5l.4-.6c.3-.4.6-.4 1-.2l1.3.7c.5.3.5.9-.1 1.2-1.4.8-3.1.2-4.8-1.3-1.6-1.5-2.3-3.4-1.7-4.9Z" />
+    </svg>
+  );
+}

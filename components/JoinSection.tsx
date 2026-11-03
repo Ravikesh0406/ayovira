@@ -1,5 +1,7 @@
 import { Check } from "lucide-react";
 
+import { WHATSAPP_COMMUNITY_URL } from "@/lib/constants";
+import { WhatsAppIcon } from "./SocialIcons";
 import { SignupForm } from "./SignupForm";
 
 export function JoinSection() {
@@ -30,6 +32,20 @@ export function JoinSection() {
             Your account lets you update your interests and contact choices
             whenever you like.
           </p>
+
+          <div className="whatsapp-join">
+            <a
+              className="btn btn-secondary"
+              href={WHATSAPP_COMMUNITY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-analytics="join-whatsapp"
+            >
+              <WhatsAppIcon size={18} />
+              Join our WhatsApp community
+            </a>
+            <p className="small-note">Prefer WhatsApp? Say hello in the group.</p>
+          </div>
         </div>
 
         <SignupForm variant="landing" />

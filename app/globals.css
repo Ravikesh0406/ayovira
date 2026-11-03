@@ -1211,6 +1211,28 @@ fieldset.field {
   margin-top: 24px;
 }
 
+.success-card .success-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.success-card .success-actions .btn {
+  width: 100%;
+  max-width: 340px;
+  margin-top: 0;
+}
+
+.whatsapp-join {
+  margin-top: 22px;
+}
+
+.whatsapp-join .small-note {
+  margin-top: 10px;
+}
+
 /* ---------- FAQ ---------- */
 
 .faq-grid {

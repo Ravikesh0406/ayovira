@@ -12,6 +12,8 @@ import {
 } from "lucide-react";
 
 import { INTERESTS, ROLES } from "@/lib/types";
+import { WHATSAPP_COMMUNITY_URL } from "@/lib/constants";
+import { WhatsAppIcon } from "./SocialIcons";
 
 type SignupFormProps = {
   variant?: "landing" | "page";
@@ -165,9 +167,20 @@ export function SignupForm({ variant = "landing" }: SignupFormProps) {
           We&apos;ll reach out as you&apos;ve chosen. Keep an eye out for our first
           free camp in Faridabad.
         </p>
-        <Link className="btn btn-primary" href="/dashboard">
-          Open your dashboard
-        </Link>
+        <div className="success-actions">
+          <Link className="btn btn-primary" href="/dashboard">
+            Open your dashboard
+          </Link>
+          <a
+            className="btn btn-secondary"
+            href={WHATSAPP_COMMUNITY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <WhatsAppIcon size={18} />
+            Join our WhatsApp community
+          </a>
+        </div>
         <p className="form-alt" style={{ marginTop: 16 }}>
           <Link className="link" href="/">
             Back to home
