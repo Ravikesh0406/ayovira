@@ -1,7 +1,7 @@
 import { WHATSAPP_COMMUNITY_URL } from "./constants";
 
 const configuredSiteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ayovira.site";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.ayovira.site";
 
 export const SITE_URL = configuredSiteUrl.replace(/\/+$/, "");
 export const SITE_NAME = "Ayovira";

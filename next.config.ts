@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const canonicalUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ayovira.site"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.ayovira.site"
 ).replace(/\/+$/, "");
 
 const noIndexHeaders = [
@@ -15,7 +15,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/:path*",
-        has: [{ type: "host", value: "www.ayovira.site" }],
+        has: [{ type: "host", value: "ayovira.site" }],
         destination: `${canonicalUrl}/:path*`,
         permanent: true,
       },

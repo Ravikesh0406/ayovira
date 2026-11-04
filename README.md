@@ -45,7 +45,7 @@ Requires Node.js 20.9 or newer (Node 24 recommended).
 - **Privacy notice** — `/privacy`.
 - **Security basics** — scrypt password hashing, HTTP-only session cookies,
   server-side validation, a hidden honeypot field, and in-memory rate limiting.
-- **SEO** — canonical `https://ayovira.site`, keyword-focused titles and
+- **SEO** - canonical `https://www.ayovira.site`, keyword-focused titles and
   descriptions, Open Graph and Twitter cards, Organization / WebSite / WebPage /
   FAQ / Breadcrumb structured data, a sitemap, robots rules, and noindex headers
   for private account pages.
@@ -85,7 +85,7 @@ Copy `.env.example` to `.env.local` if you want to override defaults.
 | `TURSO_DATABASE_URL` | _(unset)_ | Hosted Turso database URL |
 | `TURSO_AUTH_TOKEN` | _(unset)_ | Turso database token |
 | `DATABASE_PATH` | `./data/ayovira.db` | Local fallback file when Turso is not set |
-| `NEXT_PUBLIC_SITE_URL` | `https://ayovira.site` | Canonical URL, sitemap, schema |
+| `NEXT_PUBLIC_SITE_URL` | `https://www.ayovira.site` | Canonical URL, sitemap, schema |
 | `GOOGLE_SITE_VERIFICATION` | _(unset)_ | Google Search Console verification token |
 
 When `TURSO_DATABASE_URL` is set, all reads and writes go to Turso and the local
@@ -107,8 +107,8 @@ Export CSVs never include password hashes or session tokens.
 
 These come from the build brief and should be checked before launch:
 
-1. **Domain** — live at `https://ayovira.site`; verify it in Google Search
-   Console and submit `https://ayovira.site/sitemap.xml`.
+1. **Domain** - live at `https://www.ayovira.site`; verify it in Google Search
+   Console and submit `https://www.ayovira.site/sitemap.xml`.
 2. **Social accounts** — WhatsApp is linked; add the rest in
    `components/Footer.tsx` once the URLs are confirmed.
 3. **Logo** — the header/footer use a recreated SVG wordmark. Replace it with the
