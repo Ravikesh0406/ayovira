@@ -8,8 +8,9 @@ import { getCurrentCustomer, safeNextPath } from "@/lib/auth";
 
 export const metadata: Metadata = {
   title: "Log in",
-  description: "Log in to your Ayovira account to manage your interests and contact choices.",
-  robots: { index: false, follow: true },
+  description:
+    "Log in to your Ayovira account to manage your interests and contact choices.",
+  robots: { index: false, follow: false },
 };
 
 export default async function LoginPage({

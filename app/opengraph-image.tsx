@@ -1,7 +1,8 @@
 import { ImageResponse } from "next/og";
 
-export const alt =
-  "Ayovira — wellness within everyone's reach. Yoga, fitness, nutrition, meditation and health check-ups in Faridabad.";
+import { OG_IMAGE_ALT } from "@/lib/seo";
+
+export const alt = OG_IMAGE_ALT;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

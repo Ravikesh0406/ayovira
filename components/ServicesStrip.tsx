@@ -25,8 +25,8 @@ export function ServicesStrip() {
         <div className="section-head center">
           <h2>Everything for your wellbeing, in one place</h2>
           <p>
-            Ayovira is a wellness ecosystem that connects you with the right
-            professionals and services.
+            Ayovira is a wellness ecosystem in Faridabad that connects you with
+            the right professionals and services.
           </p>
         </div>
 

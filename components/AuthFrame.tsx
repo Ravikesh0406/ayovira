@@ -27,17 +27,17 @@ export function AuthFrame({ children, asideTitle, asideText }: AuthFrameProps) {
       <div className="auth-page">
         <aside className="auth-aside">
           <div>
-            <h2>{asideTitle}</h2>
-            <p>{asideText}</p>
+            <p className="auth-aside-title">{asideTitle}</p>
+            <p className="auth-aside-text">{asideText}</p>
           </div>
           <div className="auth-aside-art">
             <HeroIllustration />
           </div>
         </aside>
 
-        <div className="auth-main">
+        <main id="main" className="auth-main">
           <div className="auth-card auth-card--wide">{children}</div>
-        </div>
+        </main>
       </div>
     </>
   );

@@ -34,7 +34,7 @@ export function Hero() {
           <Swoosh />
           <p className="hero-sub">
             Find and connect with yoga, fitness, nutrition, meditation and health
-            check-ups near you.
+            check-ups in Faridabad — plus free wellness camps near you.
           </p>
           <p className="visually-hidden">
             Ayovira is a wellness platform in Faridabad, Haryana, India.

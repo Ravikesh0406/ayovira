@@ -6,23 +6,26 @@ import { Goal } from "@/components/Goal";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { HowItWorks } from "@/components/HowItWorks";
+import { JsonLd } from "@/components/JsonLd";
 import { JoinSection } from "@/components/JoinSection";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { ServicesStrip } from "@/components/ServicesStrip";
 import { FAQ_ITEMS } from "@/lib/faq";
+import {
+  SITE_DESCRIPTION,
+  faqSchema,
+  jsonLdGraph,
+  webPageSchema,
+} from "@/lib/seo";
 
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: FAQ_ITEMS.map((item) => ({
-    "@type": "Question",
-    name: item.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.answer,
-    },
-  })),
-};
+const pageJsonLd = jsonLdGraph([
+  webPageSchema({
+    path: "/",
+    name: "Ayovira | Yoga, Fitness & Wellness Camps in Faridabad",
+    description: SITE_DESCRIPTION,
+  }),
+  faqSchema(FAQ_ITEMS),
+]);
 
 export default function HomePage() {
   return (
@@ -40,10 +43,7 @@ export default function HomePage() {
       </main>
       <Footer />
       <MobileCtaBar />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+      <JsonLd data={pageJsonLd} />
     </>
   );
 }

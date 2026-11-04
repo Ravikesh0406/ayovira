@@ -130,7 +130,10 @@ export function Camps() {
         </div>
 
         <div className="camps-copy">
-          <h2>Free wellness camps for schools, workplaces and communities</h2>
+          <h2>
+            Free wellness camps for schools, workplaces and communities in
+            Faridabad
+          </h2>
           <p>
             Short, welcoming sessions that make wellness feel simple and close to
             home.

@@ -1464,12 +1464,19 @@ fieldset.field {
   overflow: hidden;
 }
 
-.auth-aside h2 {
+.auth-aside-title {
   max-width: 16ch;
+  margin: 0;
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
   font-size: clamp(1.75rem, 2.6vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--forest);
+  text-wrap: balance;
 }
 
-.auth-aside p {
+.auth-aside-text {
   max-width: 38ch;
   margin-top: 18px;
   color: #34463f;

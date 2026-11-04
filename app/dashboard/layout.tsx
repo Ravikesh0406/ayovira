@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import type { ReactNode } from "react";
@@ -7,6 +8,11 @@ import { Logo } from "@/components/Logo";
 import { LogoutButton } from "@/components/LogoutButton";
 import { getCurrentCustomer } from "@/lib/auth";
 import { initials } from "@/lib/format";
+
+export const metadata: Metadata = {
+  title: "Your account",
+  robots: { index: false, follow: false },
+};
 
 export default async function DashboardLayout({
   children,

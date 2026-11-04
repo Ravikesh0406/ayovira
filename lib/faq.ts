@@ -5,6 +5,11 @@ export const FAQ_ITEMS = [
       "Ayovira is a wellness ecosystem. We help you discover and connect with yoga, fitness, nutrition, meditation and health check-up services in one place. We are still building, starting in Faridabad.",
   },
   {
+    question: "Where is Ayovira available?",
+    answer:
+      "Ayovira is starting in Faridabad, Haryana. Free camps and wellness services are announced for Faridabad first, and we plan to expand to more areas as we grow.",
+  },
+  {
     question: "Is it free to join?",
     answer:
       "Yes. Joining the community is free. If any service ever has a fee, we will tell you clearly before you pay.",

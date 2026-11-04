@@ -3,13 +3,55 @@ import Link from "next/link";
 
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { JsonLd } from "@/components/JsonLd";
+import {
+  OG_IMAGE_ALT,
+  OG_IMAGE_PATH,
+  breadcrumbSchema,
+  jsonLdGraph,
+  webPageSchema,
+} from "@/lib/seo";
+
+const description =
+  "How Ayovira collects, uses and protects the details you share when you join the community.";
 
 export const metadata: Metadata = {
   title: "Privacy notice",
-  description:
-    "How Ayovira collects, uses and protects the details you share when you join the community.",
+  description,
   alternates: { canonical: "/privacy" },
+  openGraph: {
+    title: "Privacy notice | Ayovira",
+    description,
+    url: "/privacy",
+    type: "article",
+    images: [
+      {
+        url: OG_IMAGE_PATH,
+        width: 1200,
+        height: 630,
+        alt: OG_IMAGE_ALT,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy notice | Ayovira",
+    description,
+    images: [OG_IMAGE_PATH],
+  },
 };
+
+const pageJsonLd = jsonLdGraph([
+  webPageSchema({
+    path: "/privacy",
+    name: "Privacy notice | Ayovira",
+    description,
+  }),
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Privacy notice", path: "/privacy" },
+  ]),
+]);
 
 export default function PrivacyPage() {
   return (
@@ -113,6 +155,7 @@ export default function PrivacyPage() {
         </div>
       </main>
       <Footer />
+      <JsonLd data={pageJsonLd} />
     </>
   );
 }

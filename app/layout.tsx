@@ -2,6 +2,19 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Fraunces, Montserrat } from "next/font/google";
 
+import { JsonLd } from "@/components/JsonLd";
+import {
+  OG_IMAGE_ALT,
+  OG_IMAGE_PATH,
+  SITE_DESCRIPTION,
+  SITE_LANGUAGE,
+  SITE_LOCALE,
+  SITE_NAME,
+  SITE_URL,
+  jsonLdGraph,
+  organizationSchema,
+  websiteSchema,
+} from "@/lib/seo";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -18,41 +31,74 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.ayovira.com";
+const homeTitle = "Ayovira | Yoga, Fitness & Wellness Camps in Faridabad";
+
+const googleVerification = process.env.GOOGLE_SITE_VERIFICATION;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
+  applicationName: SITE_NAME,
   title: {
-    default: "Ayovira | Wellness Platform in Faridabad",
-    template: "%s | Ayovira",
+    default: homeTitle,
+    template: `%s | ${SITE_NAME}`,
   },
-  description:
-    "Ayovira connects you with yoga, fitness, nutrition, meditation and health check-up services in Faridabad. Join the free wellness community.",
-  alternates: { canonical: "/" },
+  description: SITE_DESCRIPTION,
+  category: "health",
+  alternates: { canonical: `${SITE_URL}/` },
   keywords: [
     "wellness platform Faridabad",
-    "yoga classes in Faridabad",
-    "health check-up in Faridabad",
-    "dietitian in Faridabad",
-    "free wellness camp Faridabad",
-    "meditation classes Faridabad",
+    "wellness community Faridabad",
+    "yoga services Faridabad",
+    "fitness services Faridabad",
+    "nutrition services Faridabad",
+    "meditation services Faridabad",
+    "health check-up services Faridabad",
+    "free wellness camps Faridabad",
   ],
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
   openGraph: {
-    title: "Ayovira | Wellness Platform in Faridabad",
-    description:
-      "Find and connect with yoga, fitness, nutrition, meditation and health check-ups near you. Join the free Ayovira community.",
+    title: homeTitle,
+    description: SITE_DESCRIPTION,
     type: "website",
     url: "/",
-    siteName: "Ayovira",
-    locale: "en_IN",
+    siteName: SITE_NAME,
+    locale: SITE_LOCALE,
+    images: [
+      {
+        url: OG_IMAGE_PATH,
+        width: 1200,
+        height: 630,
+        alt: OG_IMAGE_ALT,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ayovira | Wellness Platform in Faridabad",
-    description:
-      "Find and connect with wellness services near you. Join the free Ayovira community.",
+    title: homeTitle,
+    description: SITE_DESCRIPTION,
+    images: [OG_IMAGE_PATH],
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  other: {
+    "geo.region": "IN-HR",
+    "geo.placename": "Faridabad",
+    "content-language": SITE_LANGUAGE,
+  },
+  ...(googleVerification
+    ? { verification: { google: googleVerification } }
+    : {}),
 };
 
 export const viewport: Viewport = {
@@ -61,33 +107,12 @@ export const viewport: Viewport = {
   themeColor: "#F7F3EA",
 };
 
-const organizationJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Ayovira",
-  url: siteUrl,
-  logo: `${siteUrl}/icon.svg`,
-  email: "theayovira@gmail.com",
-  telephone: "+91-8582048456",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Faridabad",
-    addressRegion: "Haryana",
-    addressCountry: "IN",
-  },
-};
-
-const websiteJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "Ayovira",
-  url: siteUrl,
-};
+const siteJsonLd = jsonLdGraph([organizationSchema(), websiteSchema()]);
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
-      lang="en-IN"
+      lang={SITE_LANGUAGE}
       data-scroll-behavior="smooth"
       suppressHydrationWarning
       className={`${fraunces.variable} ${montserrat.variable}`}
@@ -97,14 +122,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           Skip to content
         </a>
         {children}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-        />
+        <JsonLd data={siteJsonLd} />
       </body>
     </html>
   );
