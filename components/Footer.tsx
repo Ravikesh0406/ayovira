@@ -1,18 +1,6 @@
 import Link from "next/link";
 
-import { WHATSAPP_COMMUNITY_URL } from "@/lib/constants";
 import { Logo } from "./Logo";
-import { InstagramIcon, WhatsAppIcon } from "./SocialIcons";
-
-// Only add URLs here once the founder confirms the accounts are live.
-// The brief asks us to hide unconfirmed social links rather than link placeholders.
-const SOCIALS: { label: string; url: string; icon: typeof InstagramIcon }[] = [
-  {
-    label: "Join the Ayovira WhatsApp community",
-    url: WHATSAPP_COMMUNITY_URL,
-    icon: WhatsAppIcon,
-  },
-];
 
 const FOOTER_LINKS = [
   { href: "/#how-it-works", label: "How it works" },
@@ -34,22 +22,6 @@ export function Footer() {
               <Logo cream />
             </Link>
             <p>Wellness Within Everyone&apos;s Reach.</p>
-            {SOCIALS.length > 0 ? (
-              <div className="social-row">
-                {SOCIALS.map(({ label, url, icon: Icon }) => (
-                  <a
-                    key={label}
-                    className="social-btn"
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={label}
-                  >
-                    <Icon size={18} />
-                  </a>
-                ))}
-              </div>
-            ) : null}
           </div>
 
           <div>

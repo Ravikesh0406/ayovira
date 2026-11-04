@@ -1,7 +1,6 @@
+import Image from "next/image";
 import { Check } from "lucide-react";
 
-import { WHATSAPP_COMMUNITY_URL } from "@/lib/constants";
-import { WhatsAppIcon } from "./SocialIcons";
 import { SignupForm } from "./SignupForm";
 
 export function JoinSection() {
@@ -33,18 +32,15 @@ export function JoinSection() {
             whenever you like.
           </p>
 
-          <div className="whatsapp-join">
-            <a
-              className="btn btn-secondary"
-              href={WHATSAPP_COMMUNITY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-analytics="join-whatsapp"
-            >
-              <WhatsAppIcon size={18} />
-              Join our WhatsApp community
-            </a>
-            <p className="small-note">Prefer WhatsApp? Say hello in the group.</p>
+          {/* Adapted from unDraw's free "A day at the park" illustration. */}
+          <div className="join-art">
+            <Image
+              src="/images/community-park.svg"
+              alt="Illustration of people walking, resting and spending time together in a sunny park"
+              width={1117}
+              height={824}
+              unoptimized
+            />
           </div>
         </div>
 

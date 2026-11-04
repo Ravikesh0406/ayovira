@@ -1225,12 +1225,18 @@ fieldset.field {
   margin-top: 0;
 }
 
-.whatsapp-join {
-  margin-top: 22px;
+.join-art {
+  margin-top: clamp(24px, 4vw, 36px);
+  overflow: hidden;
+  border: 1px solid rgba(15, 59, 48, 0.08);
+  border-radius: var(--radius);
+  background: var(--cream);
 }
 
-.whatsapp-join .small-note {
-  margin-top: 10px;
+.join-art img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 /* ---------- FAQ ---------- */
